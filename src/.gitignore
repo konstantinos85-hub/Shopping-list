@@ -1,0 +1,19 @@
+# Dependencies (ΠΟΤΕ μην ανεβάζεις αυτόν τον φάκελο)
+node_modules/
+
+# Production (Τα αρχεία που βγαίνουν από το build)
+dist/
+build/
+
+# Local env files (Αρχεία με κωδικούς/κλειδιά)
+.env
+.env.local
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor folders (Ρυθμίσεις του VS Code)
+.vscode/
+.DS_Store

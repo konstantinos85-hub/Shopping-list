@@ -1,0 +1,217 @@
+/* Βασικό υπόβαθρο της σελίδας */
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: whitesmoke;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(-45deg, #c4b5b1, #d2b7c1, #171717, #62605f);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+
+}
+
+
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Η Λευκή Κάρτα */
+.shopping-card {
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px) saturate(180%) contrast(85%);
+  -webkit-backdrop-filter: blur(10px) saturate(180%) contrast(85%);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  border: 15px solid rgba(255, 255, 255, 0.3);
+  position: relative;
+  z-index: 10;
+}
+
+h1 {
+  color: #1f2937;
+  margin-bottom: 20px;
+}
+
+/* Η φόρμα εισαγωγής */
+.input-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.qty-input {
+  width: 60px;
+  padding: 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+}
+
+.name-input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  outline: none;
+}
+
+.add-btn {
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2);
+  user-select: none;
+}
+
+.add-btn:hover {
+  background-color: #1d4ed8;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(37, 99, 235, 0.3);
+}
+
+.add-btn:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
+  background-color: #1e40af;
+  scale: 0.98;
+}
+
+/* Η Λίστα των Προϊόντων */
+.item-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f9fafb;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid #f3f4f6;
+}
+
+.item-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+/* Όταν ένα προϊόν είναι "Αγορασμένο" */
+.item.bought {
+  opacity: 0.5;
+}
+
+.item.bought .item-text {
+  text-decoration: line-through;
+  color: #050505;
+}
+
+.delete-btn {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.delete-btn:hover {
+  transform: scale(1.2);
+}
+
+.empty-msg {
+  color: #9ca3af;
+  font-style: italic;
+}
+
+.item-text {
+  color: #000000 !important;
+  /* Μαύρο χρώμα */
+  font-weight: 600;
+  /* Έντονη γραφή */
+}
+
+.item-info {
+  color: #000000 !important;
+  /* Μαύρο και για τα 1x, 2x κλπ */
+}
+
+.bg-lines-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  /* Πίσω από την κάρτα */
+  overflow: hidden;
+  background-color: transparent !important;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.animated-line {
+  fill: none;
+  stroke: rgba(5, 5, 5, 0.2);
+  /* Απαλό μπλε χρώμα */
+  stroke-width: 3;
+  stroke-linecap: round;
+
+  /* Το εφέ ζωγραφίσματος */
+  stroke-dasharray: 2000;
+  stroke-dashoffset: 2000;
+  animation: drawLines 8s linear infinite;
+  stroke: #07090d !important;
+  /* Έντονο μπλε χωρίς διαφάνεια */
+  stroke-width: 5;
+}
+
+.line-delay {
+  animation-delay: 2s;
+  stroke: rgba(231, 60, 126, 0.15);
+}
+
+.line-delay-2 {
+  animation-delay: 4s;
+  stroke: rgba(35, 213, 171, 0.15);
+}
+
+@keyframes drawLines {
+  0% {
+    stroke-dashoffset: 2000;
+  }
+
+  50% {
+    stroke-dashoffset: 0;
+  }
+
+  100% {
+    stroke-dashoffset: -2000;
+  }
+}
