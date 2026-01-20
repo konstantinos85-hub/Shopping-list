@@ -1,4 +1,3 @@
-/* Βασικό υπόβαθρο της σελίδας */
 body {
   margin: 0;
   padding: 0;
@@ -6,14 +5,12 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: whitesmoke;
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(-45deg, #c4b5b1, #d2b7c1, #171717, #62605f);
+  font-family: 'Segoe UI', Roboto, sans-serif;
+  background: linear-gradient(-45deg, #e0dddc, #d2b7c1, #171717, #947d66);
   background-size: 400% 400%;
   animation: gradientBG 15s ease infinite;
-
+  overflow: hidden;
 }
-
 
 @keyframes gradientBG {
   0% {
@@ -29,139 +26,218 @@ body {
   }
 }
 
-/* Η Λευκή Κάρτα */
-.shopping-card {
-  background-color: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(10px) saturate(180%) contrast(85%);
-  -webkit-backdrop-filter: blur(10px) saturate(180%) contrast(85%);
-  padding: 30px;
-  border-radius: 20px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8);
-  width: 100%;
-  max-width: 400px;
-  text-align: center;
-  border: 15px solid rgba(255, 255, 255, 0.3);
+.container {
   position: relative;
-  z-index: 10;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Reveal Animation με στρογγυλεμένες γωνίες */
+.reveal-animation {
+  animation: mergeEffect 1.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  will-change: clip-path, opacity, transform;
+}
+
+@keyframes mergeEffect {
+  0% {
+    opacity: 0;
+    transform: scale(1.1);
+    clip-path: inset(0 45% 0 45% round 24px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    clip-path: inset(0 0 0 0 round 24px);
+  }
+}
+
+/* Shopping Card - Μεγαλύτερο πλάτος και δυναμικό ύψος */
+.shopping-card {
+  background-color: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  padding: 35px;
+  border-radius: 24px;
+  width: 550px;
+  /* Αυξημένο πλάτος για να χωράνε όλα */
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
 }
 
 h1 {
-  color: #1f2937;
+  color: #111827;
+  font-weight: 800;
   margin-bottom: 20px;
+  font-size: 2rem;
 }
 
-/* Η φόρμα εισαγωγής */
+/* Stats Bar */
+.stats-bar {
+  margin-bottom: 20px;
+  background: rgba(0, 0, 0, 0.05);
+  padding: 12px;
+  border-radius: 16px;
+}
+
+.progress-text {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #374151;
+  margin-bottom: 8px;
+}
+
+.progress-bg {
+  height: 10px;
+  background: #e5e7eb;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #2563eb, #60a5fa);
+}
+
+/* Input Group - Responsive Layout */
 .input-group {
   display: flex;
   gap: 10px;
   margin-bottom: 25px;
+  justify-content: center;
+  flex-wrap: nowrap;
+}
+
+.cat-select {
+  padding: 10px;
+  border-radius: 12px;
+  border: 2px solid #d1d5db;
+  background: white;
+  cursor: pointer;
+  font-size: 1.1rem;
 }
 
 .qty-input {
-  width: 60px;
-  padding: 10px;
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
+  width: 65px;
+  padding: 12px;
+  border-radius: 12px;
+  border: 2px solid #d1d5db;
+  text-align: center;
 }
 
 .name-input {
   flex: 1;
-  padding: 10px;
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
+  padding: 12px;
+  border-radius: 12px;
+  border: 2px solid #d1d5db;
   outline: none;
+  font-size: 1rem;
 }
 
 .add-btn {
-  background-color: #2563eb;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
   color: white;
   border: none;
-  padding: 10px 15px;
-  border-radius: 8px;
+  padding: 0 20px;
+  border-radius: 12px;
   cursor: pointer;
   font-weight: bold;
-  font-size: 1rem;
-  transition: all 0.2s ease;
-  box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2);
-  user-select: none;
+  transition: all 0.3s ease;
 }
 
 .add-btn:hover {
-  background-color: #1d4ed8;
   transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(37, 99, 235, 0.3);
+  filter: brightness(1.1);
 }
 
-.add-btn:active {
-  transform: translateY(1px);
-  box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
-  background-color: #1e40af;
-  scale: 0.98;
-}
-
-/* Η Λίστα των Προϊόντων */
+/* Item Container - Scrollable */
 .item-container {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 8px;
   display: flex;
   flex-direction: column;
   gap: 12px;
+}
+
+.item-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.item-container::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
 }
 
 .item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #f9fafb;
-  padding: 12px;
-  border-radius: 12px;
-  border: 1px solid #f3f4f6;
+  background: white;
+  padding: 15px;
+  border-radius: 18px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .item-info {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   cursor: pointer;
 }
 
-/* Όταν ένα προϊόν είναι "Αγορασμένο" */
+.category-icon {
+  font-size: 1.2rem;
+}
+
+.checkbox {
+  font-size: 1.2rem;
+}
+
+.item-text {
+  font-weight: 600;
+  color: #1f2937;
+}
+
 .item.bought {
   opacity: 0.5;
+  background: #f3f4f6;
 }
 
 .item.bought .item-text {
   text-decoration: line-through;
-  color: #050505;
 }
 
 .delete-btn {
-  background: none;
+  background: #fee2e2;
+  color: #ef4444;
   border: none;
-  font-size: 1.2rem;
+  width: 40px;
+  height: 400px;
+  /* Max height limit handled by flex */
+  max-height: 40px;
+  border-radius: 10px;
   cursor: pointer;
-  transition: transform 0.2s;
+  transition: 0.2s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .delete-btn:hover {
-  transform: scale(1.2);
+  background: #ef4444;
+  color: white;
 }
 
-.empty-msg {
-  color: #9ca3af;
-  font-style: italic;
-}
-
-.item-text {
-  color: #000000 !important;
-  /* Μαύρο χρώμα */
-  font-weight: 600;
-  /* Έντονη γραφή */
-}
-
-.item-info {
-  color: #000000 !important;
-  /* Μαύρο και για τα 1x, 2x κλπ */
-}
-
+/* Background Lines */
 .bg-lines-container {
   position: fixed;
   top: 0;
@@ -169,37 +245,17 @@ h1 {
   width: 100vw;
   height: 100vh;
   z-index: -1;
-  /* Πίσω από την κάρτα */
-  overflow: hidden;
-  background-color: transparent !important;
   pointer-events: none;
-  z-index: 1;
 }
 
 .animated-line {
   fill: none;
-  stroke: rgba(5, 5, 5, 0.2);
-  /* Απαλό μπλε χρώμα */
-  stroke-width: 3;
-  stroke-linecap: round;
-
-  /* Το εφέ ζωγραφίσματος */
-  stroke-dasharray: 2000;
-  stroke-dashoffset: 2000;
-  animation: drawLines 8s linear infinite;
-  stroke: #07090d !important;
-  /* Έντονο μπλε χωρίς διαφάνεια */
+  stroke: #07090d;
   stroke-width: 5;
-}
-
-.line-delay {
-  animation-delay: 2s;
-  stroke: rgba(231, 60, 126, 0.15);
-}
-
-.line-delay-2 {
-  animation-delay: 4s;
-  stroke: rgba(35, 213, 171, 0.15);
+  stroke-dasharray: 2000;
+  animation: drawLines 8s linear infinite;
+  will-change: stroke-dashoffset;
+  transform: translateZ(0);
 }
 
 @keyframes drawLines {
@@ -214,4 +270,10 @@ h1 {
   100% {
     stroke-dashoffset: -2000;
   }
+}
+
+.empty-msg {
+  color: #9ca3af;
+  font-style: italic;
+  margin-top: 20px;
 }

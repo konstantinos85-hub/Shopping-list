@@ -1,4 +1,6 @@
-export const BackgroundLines = () => {
+import React from 'react'; // Πρόσθεσε οπωσδήποτε το React
+
+export const BackgroundLines = React.memo(() => {
     return (
         <div className="bg-lines-container">
             <svg width="100%" height="100%" xmlns="http://www.w3.org">
@@ -11,4 +13,4 @@ export const BackgroundLines = () => {
             </svg>
         </div>
     );
-};
+});
